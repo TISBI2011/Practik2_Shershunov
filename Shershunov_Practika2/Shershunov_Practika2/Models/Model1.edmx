@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище ShershunovPractika2_kinoteatrModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Janor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="DatePokaza" Type="date" Nullable="false" />
+          <Property Name="Janorid" Type="int" Nullable="false" />
+          <Property Name="PuskinCart" Type="int" />
+        </EntityType>
+        <EntityType Name="PuskinCart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Film_Janor">
+          <End Role="Janor" Type="Self.Janor" Multiplicity="1" />
+          <End Role="Movies" Type="Self.Movies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Janor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Movies">
+              <PropertyRef Name="Janorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movies_PuskinCart">
+          <End Role="PuskinCart" Type="Self.PuskinCart" Multiplicity="0..1" />
+          <End Role="Movies" Type="Self.Movies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PuskinCart">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Movies">
+              <PropertyRef Name="PuskinCart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ShershunovPractika2_kinoteatrModelContainer">
+          <EntitySet Name="Janor" EntityType="Self.Janor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PuskinCart" EntityType="Self.PuskinCart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Film_Janor" Association="Self.FK_Film_Janor">
+            <End Role="Janor" EntitySet="Janor" />
+            <End Role="Movies" EntitySet="Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movies_PuskinCart" Association="Self.FK_Movies_PuskinCart">
+            <End Role="PuskinCart" EntitySet="PuskinCart" />
+            <End Role="Movies" EntitySet="Movies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShershunovPractika2_kinoteatrModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ShershunovPractika2_kinoteatrEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Janor" EntityType="ShershunovPractika2_kinoteatrModel.Janor" />
+          <EntitySet Name="Movies" EntityType="ShershunovPractika2_kinoteatrModel.Movies" />
+          <EntitySet Name="PuskinCart" EntityType="ShershunovPractika2_kinoteatrModel.PuskinCart" />
+          <EntitySet Name="sysdiagrams" EntityType="ShershunovPractika2_kinoteatrModel.sysdiagrams" />
+          <EntitySet Name="User" EntityType="ShershunovPractika2_kinoteatrModel.User" />
+          <AssociationSet Name="FK_Film_Janor" Association="ShershunovPractika2_kinoteatrModel.FK_Film_Janor">
+            <End Role="Janor" EntitySet="Janor" />
+            <End Role="Movies" EntitySet="Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movies_PuskinCart" Association="ShershunovPractika2_kinoteatrModel.FK_Movies_PuskinCart">
+            <End Role="PuskinCart" EntitySet="PuskinCart" />
+            <End Role="Movies" EntitySet="Movies" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Janor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Movies" Relationship="ShershunovPractika2_kinoteatrModel.FK_Film_Janor" FromRole="Janor" ToRole="Movies" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DatePokaza" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Janorid" Type="Int32" Nullable="false" />
+          <Property Name="PuskinCart" Type="Int32" />
+          <NavigationProperty Name="Janor" Relationship="ShershunovPractika2_kinoteatrModel.FK_Film_Janor" FromRole="Movies" ToRole="Janor" />
+          <NavigationProperty Name="PuskinCart1" Relationship="ShershunovPractika2_kinoteatrModel.FK_Movies_PuskinCart" FromRole="Movies" ToRole="PuskinCart" />
+        </EntityType>
+        <EntityType Name="PuskinCart">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Movies" Relationship="ShershunovPractika2_kinoteatrModel.FK_Movies_PuskinCart" FromRole="PuskinCart" ToRole="Movies" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Film_Janor">
+          <End Type="ShershunovPractika2_kinoteatrModel.Janor" Role="Janor" Multiplicity="1" />
+          <End Type="ShershunovPractika2_kinoteatrModel.Movies" Role="Movies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Janor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Movies">
+              <PropertyRef Name="Janorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movies_PuskinCart">
+          <End Type="ShershunovPractika2_kinoteatrModel.PuskinCart" Role="PuskinCart" Multiplicity="0..1" />
+          <End Type="ShershunovPractika2_kinoteatrModel.Movies" Role="Movies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PuskinCart">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Movies">
+              <PropertyRef Name="PuskinCart" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ShershunovPractika2_kinoteatrModelContainer" CdmEntityContainer="ShershunovPractika2_kinoteatrEntities">
+          <EntitySetMapping Name="Janor">
+            <EntityTypeMapping TypeName="ShershunovPractika2_kinoteatrModel.Janor">
+              <MappingFragment StoreEntitySet="Janor">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="ShershunovPractika2_kinoteatrModel.Movies">
+              <MappingFragment StoreEntitySet="Movies">
+                <ScalarProperty Name="PuskinCart" ColumnName="PuskinCart" />
+                <ScalarProperty Name="Janorid" ColumnName="Janorid" />
+                <ScalarProperty Name="DatePokaza" ColumnName="DatePokaza" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PuskinCart">
+            <EntityTypeMapping TypeName="ShershunovPractika2_kinoteatrModel.PuskinCart">
+              <MappingFragment StoreEntitySet="PuskinCart">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ShershunovPractika2_kinoteatrModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ShershunovPractika2_kinoteatrModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

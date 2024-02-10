@@ -1,0 +1,44 @@
+﻿<Page x:Class="Shershunov_Practika2.Pages.FilmPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Shershunov_Practika2.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FilmPage"
+      Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Фильм" Grid.Row="0" HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label Content="Фильтровать по пушкинской карте" HorizontalAlignment="Left"/>
+            <TextBox x:Name="TBPushCart" Width="150" TextChanged="TBPushCart_TextChanged"/>
+            <Label Content="Дата" HorizontalAlignment="Left"/>
+            <DatePicker Name="DPDate" SelectedDateChanged="DPDate_SelectedDateChanged"/>
+            <DatePicker Name="DPDateTO" SelectedDateChanged="DPDateTO_SelectedDateChanged"/>
+            <Label Content="Фильтровать по жанрам" HorizontalAlignment="Left" />
+            <TextBox x:Name="TBJanorFilm" Width="100" TextChanged="TBJanorFilm_TextChanged"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="200" >
+            <Button x:Name="Badd" Content="Добавить фильм" Click="Badd_Click"/>
+            <Button x:Name="BRedact" Content="Редактировать" Click="BRedact_Click"/>
+            <Button x:Name="BBack" Content="Назад" Click="BBack_Click" />
+        </StackPanel>
+        <DataGrid Grid.Row="2" x:Name="DGFilm" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Пушкинсая карта" Binding="{Binding PuskinCart1.Name}"/>
+                <DataGridTextColumn Header="Дата показа" Binding="{Binding DatePokaza}"/>
+                <DataGridTextColumn Header="Жанр" Binding="{Binding Janor.Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>
